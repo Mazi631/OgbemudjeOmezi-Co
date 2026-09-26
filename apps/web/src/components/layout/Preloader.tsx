@@ -110,7 +110,7 @@ export const Preloader: React.FC = () => {
 
       {/* Center: ONLY the icon preloading with vertical liquid gold fill */}
       <div className="relative z-20 flex flex-col items-center justify-center px-6">
-        <div className="relative w-56 h-28 sm:w-72 sm:h-36 lg:w-80 lg:h-40 flex items-center justify-center">
+        <div className="relative w-72 h-36 sm:w-96 sm:h-48 md:w-[440px] md:h-[220px] lg:w-[500px] lg:h-[250px] flex items-center justify-center">
           
           {/* Layer 1: Monochrome Base Silhouette Logo (Empty State) */}
           <img
