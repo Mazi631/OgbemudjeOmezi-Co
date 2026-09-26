@@ -11,12 +11,12 @@ const BADGES = [
 
 export const MarqueeSection: React.FC = () => {
   return (
-    <div className="bg-[var(--color-gold)] text-[var(--color-ink)] py-3.5 overflow-hidden border-y border-[var(--color-gold-bright)]/40 relative select-none">
-      <div className="flex w-max animate-marquee whitespace-nowrap gap-12 text-[0.75rem] font-bold tracking-[0.22em] uppercase">
+    <div className="bg-[#EBE6DC] text-[#1A1A1A] py-4 overflow-hidden border-y border-[#E6E1D5] relative select-none">
+      <div className="flex w-max animate-marquee whitespace-nowrap gap-12 text-xs font-bold tracking-[0.22em] uppercase">
         {[...BADGES, ...BADGES, ...BADGES, ...BADGES].map((badge, idx) => (
           <div key={idx} className="flex items-center gap-12">
             <span>{badge}</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-ink)]/50" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#B8860B]" />
           </div>
         ))}
       </div>

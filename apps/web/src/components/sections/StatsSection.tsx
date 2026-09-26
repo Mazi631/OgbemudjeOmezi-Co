@@ -47,11 +47,11 @@ const StatCounter: React.FC<StatItemProps> = ({ value, suffix, label }) => {
 
   return (
     <div ref={ref} className="text-center p-6 space-y-2">
-      <div className="font-serif text-4xl sm:text-5xl font-bold text-[var(--color-obsidian)] tracking-tight">
+      <div className="font-serif text-4xl sm:text-5xl font-bold text-[#1A1A1A] tracking-tight">
         {count}
         {suffix}
       </div>
-      <div className="text-xs uppercase tracking-[0.14em] font-semibold text-gray-600">
+      <div className="text-xs uppercase tracking-[0.16em] font-semibold text-[#59544B]">
         {label}
       </div>
     </div>
@@ -60,8 +60,8 @@ const StatCounter: React.FC<StatItemProps> = ({ value, suffix, label }) => {
 
 export const StatsSection: React.FC = () => {
   return (
-    <section className="bg-white border-b border-stone-200 py-12 px-5 sm:px-8">
-      <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 divide-x-0 lg:divide-x divide-stone-200">
+    <section className="bg-[#F5F2EB] border-b border-[#E6E1D5] py-14 px-6 sm:px-10">
+      <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 divide-x-0 lg:divide-x divide-[#E6E1D5]">
         <StatCounter value={30} suffix="+" label="Years in Practice" />
         <StatCounter value={500} suffix="+" label="Commercial Matters Resolved" />
         <StatCounter value={98} suffix="%" label="Client Approval Rate" />

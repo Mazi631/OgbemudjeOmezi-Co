@@ -1,100 +1,77 @@
 import React from 'react';
-import { Button } from '@ogbemudje/ui';
-import { ArrowRight, CheckCircle2, Shield } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
   return (
-    <section id="home" className="min-h-[92vh] bg-[#0A0E1A] text-white flex items-center relative overflow-hidden pt-28 pb-20 px-5 sm:px-8">
-      {/* Background Subtle Mesh & Glows */}
-      <div className="absolute inset-0 pointer-events-none opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--color-gold)]/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[var(--color-obsidian)] rounded-full blur-3xl" />
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 1px)`,
-            backgroundSize: '28px 28px',
-          }}
-        />
-      </div>
+    <section id="home" className="bg-[#F5F2EB] pt-36 pb-20 px-6 sm:px-10 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto space-y-10 text-center relative z-10">
+        {/* Main Hero Headline */}
+        <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl font-bold text-[#1A1A1A] tracking-tight leading-[1.08] max-w-5xl mx-auto">
+          Your Legal Partner In Every Situation
+        </h1>
 
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
-        {/* Left Column: Eyebrow, Heading, Subtitle, Highlights, Action CTAs */}
-        <div className="lg:col-span-7 space-y-7 animate-fadeIn">
-          {/* Eyebrow Pill Badge with Pulse Indicator */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 border border-[var(--color-gold)]/40 backdrop-blur-md">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            <span className="text-[0.72rem] font-semibold tracking-[0.16em] uppercase text-[var(--color-gold-bright)]">
-              Accepting Corporate &amp; Litigation Matters &bull; Est. 1994
-            </span>
-          </div>
+        {/* Subtitle */}
+        <p className="text-base sm:text-lg text-[#59544B] max-w-xl mx-auto font-normal leading-relaxed">
+          From complex disputes to everyday legal matters, we deliver strategic solutions with a client-first approach. Serving over 12,000 clients nationwide.
+        </p>
 
-          {/* Headline */}
-          <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-light text-white leading-[1.08] tracking-tight">
-            Relentless Advocacy.<br />
-            <span className="font-serif italic font-normal text-[var(--color-gold)]">
-              Exceptional Results.
-            </span>
-          </h1>
-
-          {/* Subtitle */}
-          <p className="text-base sm:text-lg text-gray-300 max-w-xl leading-relaxed font-light">
-            Ogbemudje, Omezi &amp; Co. provides elite legal representation across Corporate &amp; Commercial Law, Complex Commercial Litigation, Real Estate Transactions, and Dispute Resolution in Nigeria.
-          </p>
-
-          {/* Checklist */}
-          <div className="space-y-2.5 pt-1">
-            <div className="flex items-center gap-3 text-sm text-gray-200">
-              <CheckCircle2 className="w-4.5 h-4.5 text-[var(--color-gold)] shrink-0" />
-              <span>30+ Years of Established Commercial Legal Experience</span>
-            </div>
-            <div className="flex items-center gap-3 text-sm text-gray-200">
-              <CheckCircle2 className="w-4.5 h-4.5 text-[var(--color-gold)] shrink-0" />
-              <span>Federal &amp; Appellate Litigation &amp; Commercial Arbitration</span>
-            </div>
-            <div className="flex items-center gap-3 text-sm text-gray-200">
-              <CheckCircle2 className="w-4.5 h-4.5 text-[var(--color-gold)] shrink-0" />
-              <span>Dedicated Transaction Counsel &amp; Title Perfection Advisory</span>
-            </div>
-          </div>
-
-          {/* Action CTAs */}
-          <div className="flex flex-wrap items-center gap-4 pt-3">
-            <Button asAnchor href="#contact" variant="primary" icon={<ArrowRight className="w-4 h-4" />}>
-              Schedule Consultation
-            </Button>
-            <Button asAnchor href="#practice-areas" variant="outline">
-              Explore Practice Areas
-            </Button>
-          </div>
+        {/* Centered CTA Button */}
+        <div className="pt-2 flex justify-center">
+          <a
+            href="#contact"
+            className="bg-[#1A1A1A] text-white hover:bg-[#B8860B] text-sm font-semibold px-7 py-3.5 rounded-sm transition-all duration-300 inline-flex items-center gap-2 tracking-wide group shadow-md"
+          >
+            <span>Book a Free Consultation</span>
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
         </div>
 
-        {/* Right Column: Hero Graphic Frame with Badge */}
-        <div className="lg:col-span-5 relative flex items-center justify-center">
-          <div className="relative w-full max-w-md aspect-[4/5] rounded-lg overflow-hidden border border-[var(--color-gold)]/30 shadow-2xl group">
-            <img
-              src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1200&auto=format&fit=crop"
-              alt="Scales of Justice - Ogbemudje, Omezi & Co."
-              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 filter brightness-[0.85] contrast-[1.05]"
-            />
+        {/* Bottom Hero Graphic Assembly with Arch, Giant Text & Badges */}
+        <div className="relative pt-12 sm:pt-16 pb-6 max-w-6xl mx-auto flex items-end justify-between min-h-[440px]">
+          {/* Giant Subtle Background Text Behind Arch */}
+          <div className="absolute inset-x-0 bottom-0 flex justify-center items-center pointer-events-none select-none z-0">
+            <span className="font-serif text-[120px] sm:text-[180px] lg:text-[230px] font-bold text-[#E6E1D5]/70 uppercase tracking-widest leading-none">
+              LAWYER
+            </span>
+          </div>
 
-            {/* Dark Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0E1A] via-transparent to-transparent opacity-80" />
+          {/* Bottom Left Text Block */}
+          <div className="hidden md:block text-left max-w-[220px] space-y-1 relative z-20 mb-8">
+            <p className="text-xs sm:text-[0.82rem] text-[#59544B] leading-relaxed font-normal">
+              Our legal team brings <strong className="font-semibold text-[#1A1A1A]">25+ years</strong> of combined expertise, having represented clients in over 12,000 criminal matters.
+            </p>
+          </div>
 
-            {/* Top Right Emblem Badge */}
-            <div className="absolute top-4 right-4 bg-[#0A0E1A]/90 border border-[var(--color-gold)]/40 backdrop-blur-md px-3.5 py-2 rounded-xs flex items-center gap-2">
-              <Shield className="w-4 h-4 text-[var(--color-gold)]" />
-              <span className="text-[0.7rem] font-bold uppercase tracking-wider text-white">SAN Led Firm</span>
+          {/* Center Arched Image Frame (Lady Justice Statue) */}
+          <div className="relative z-10 mx-auto">
+            <div className="w-[260px] sm:w-[340px] lg:w-[380px] h-[320px] sm:h-[400px] lg:h-[450px] rounded-t-[130px] sm:rounded-t-[170px] lg:rounded-t-[190px] overflow-hidden border-4 border-[#F5F2EB] shadow-2xl relative bg-[#E6E1D5]">
+              <img
+                src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1200&auto=format&fit=crop"
+                alt="Lady Justice Scales Statue"
+                className="w-full h-full object-cover object-center filter contrast-[1.05] brightness-[0.95]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#F5F2EB]/40 via-transparent to-transparent" />
+            </div>
+          </div>
+
+          {/* Bottom Right Floating Dotted Badges */}
+          <div className="hidden md:flex flex-col items-center gap-4 relative z-20 mb-6">
+            <div className="w-20 h-20 rounded-full border border-dotted border-[#8C8577] flex items-center justify-center text-center p-2 bg-[#F5F2EB]/80 backdrop-blur-xs">
+              <span className="font-serif text-[0.62rem] uppercase font-bold text-[#2D2A26] leading-tight">
+                &bull; Best Law Firm &bull;<br />2024
+              </span>
             </div>
 
-            {/* Floating Gold Experience Card Overlay */}
-            <div className="absolute bottom-6 left-6 right-6 bg-[#0A0E1A]/95 border border-[var(--color-gold)]/50 p-5 rounded-xs backdrop-blur-xl shadow-2xl space-y-1">
-              <div className="font-serif text-3xl font-bold text-[var(--color-gold)]">
-                30+ Years
-              </div>
-              <p className="text-xs uppercase tracking-widest font-semibold text-gray-300">
-                Of Outstanding Legal Advocacy in Nigeria
-              </p>
+            <div className="w-20 h-20 rounded-full border border-dotted border-[#8C8577] flex items-center justify-center text-center p-2 bg-[#F5F2EB]/80 backdrop-blur-xs">
+              <span className="font-serif text-[0.62rem] uppercase font-bold text-[#2D2A26] leading-tight">
+                &bull; Top 100 &bull;<br />Attorneys
+              </span>
+            </div>
+
+            <div className="w-20 h-20 rounded-full border border-dotted border-[#8C8577] flex items-center justify-center text-center p-2 bg-[#F5F2EB]/80 backdrop-blur-xs">
+              <span className="font-serif text-[0.62rem] uppercase font-bold text-[#2D2A26] leading-tight">
+                &bull; AV &bull;<br />Preeminent
+              </span>
             </div>
           </div>
         </div>
