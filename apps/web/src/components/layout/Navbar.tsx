@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Phone, Mail, MapPin } from 'lucide-react';
 
 const NAV_LINKS = [
   { label: 'Home', href: '#home' },
-  { label: 'About Us', href: '#about' },
+  { label: 'About', href: '#about' },
   { label: 'Practice Areas', href: '#practice-areas' },
   { label: 'Our Attorneys', href: '#our-attorneys' },
   { label: 'Testimonials', href: '#testimonials' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Contact Us', href: '#contact' },
 ];
 
 export const Navbar: React.FC = () => {
@@ -37,14 +37,14 @@ export const Navbar: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           scrolled
-            ? 'bg-[#F5F2EB]/95 backdrop-blur-md py-4 border-b border-[#E6E1D5] shadow-xs'
-            : 'bg-[#F5F2EB] py-6'
+            ? 'bg-[#F6F3EC]/95 backdrop-blur-md py-4 border-b border-[#E6E0D2] shadow-xs'
+            : 'bg-[#F6F3EC] py-6'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between">
-          {/* Brand Logo */}
-          <a href="#home" className="font-serif text-2xl font-bold tracking-tight text-[#1A1A1A] flex items-center">
-            Ogbemudje, Omezi <span className="italic font-normal text-[#B8860B] ml-1.5">&amp; Co.</span>
+        <div className="max-w-7xl mx-auto px-5 sm:px-10 flex items-center justify-between">
+          {/* Brand Logo in Dark Bronze */}
+          <a href="#home" className="font-serif text-2xl font-bold tracking-tight text-[#38291B] flex items-center">
+            Ogbemudje, Omezi <span className="italic font-normal text-[#8A7D6E] ml-1.5">&amp; Co.</span>
           </a>
 
           {/* Desktop Navigation */}
@@ -53,21 +53,21 @@ export const Navbar: React.FC = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-[#2D2A26] hover:text-[#B8860B] transition-colors"
+                className="text-sm font-medium text-[#38291B] hover:text-[#8A7D6E] transition-colors"
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
-          {/* Right Opaque CTA Button */}
+          {/* Right Dark Bronze Button with Diagonal Arrow ↗ */}
           <div className="hidden md:flex items-center">
             <a
               href="#contact"
-              className="bg-[#1A1A1A] text-white hover:bg-[#B8860B] text-xs font-bold px-6 py-3 rounded-sm transition-all duration-300 flex items-center gap-2 tracking-wide shadow-md group"
+              className="bg-[#38291B] text-white hover:bg-[#261B11] text-xs font-bold px-6 py-2.5 rounded-sm transition-all duration-300 flex items-center gap-1.5 tracking-wide shadow-md group"
             >
               <span>Contact Us</span>
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>
 
@@ -75,7 +75,7 @@ export const Navbar: React.FC = () => {
           <button
             type="button"
             onClick={() => setSidebarOpen(true)}
-            className="md:hidden text-[#1A1A1A] hover:text-[#B8860B] p-2 focus:outline-none cursor-pointer"
+            className="md:hidden text-[#38291B] hover:text-[#8A7D6E] p-2 focus:outline-none cursor-pointer"
             aria-label="Open Sidebar Menu"
           >
             <Menu className="w-7 h-7" />
@@ -94,7 +94,7 @@ export const Navbar: React.FC = () => {
           />
 
           {/* Right Slide-Out Sidebar Panel */}
-          <aside className="relative z-10 w-[300px] sm:w-[360px] h-full bg-[#1A1A1A] text-white p-8 border-l border-[#B8860B]/40 shadow-2xl flex flex-col justify-between overflow-y-auto">
+          <aside className="relative z-10 w-[300px] sm:w-[360px] h-full bg-[#38291B] text-white p-8 border-l border-[#8A7D6E]/40 shadow-2xl flex flex-col justify-between overflow-y-auto">
             <div className="space-y-8">
               {/* Sidebar Header */}
               <div className="flex items-center justify-between border-b border-white/10 pb-5">
@@ -104,7 +104,7 @@ export const Navbar: React.FC = () => {
                 <button
                   type="button"
                   onClick={closeSidebar}
-                  className="bg-white/10 hover:bg-[#B8860B] text-white p-2 rounded-full transition-colors cursor-pointer"
+                  className="bg-white/10 hover:bg-[#D4AF37] text-white hover:text-[#38291B] p-2 rounded-full transition-colors cursor-pointer"
                   aria-label="Close Sidebar"
                 >
                   <X className="w-5 h-5" />
@@ -131,13 +131,13 @@ export const Navbar: React.FC = () => {
               <a
                 href="#contact"
                 onClick={closeSidebar}
-                className="w-full bg-[#B8860B] hover:bg-[#D4AF37] text-[#1A1A1A] text-xs font-bold uppercase tracking-wider py-3.5 rounded-sm transition-all text-center inline-flex items-center justify-center gap-2 shadow-md"
+                className="w-full bg-[#D4AF37] text-[#38291B] hover:bg-white text-xs font-bold uppercase tracking-wider py-3.5 rounded-sm transition-all text-center inline-flex items-center justify-center gap-2 shadow-md"
               >
                 <span>Schedule Consultation</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowUpRight className="w-4 h-4" />
               </a>
 
-              <div className="space-y-3 text-xs text-gray-400 font-normal">
+              <div className="space-y-3 text-xs text-gray-300 font-normal">
                 <div className="flex items-center gap-2">
                   <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
                   <span>+234 802 303 2981</span>

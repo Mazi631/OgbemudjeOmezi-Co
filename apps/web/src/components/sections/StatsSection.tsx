@@ -48,11 +48,11 @@ const StatCounter: React.FC<StatItemProps> = ({ value, suffix, label }) => {
 
   return (
     <div ref={ref} className="text-center space-y-1">
-      <div className="font-serif text-4xl sm:text-5xl font-bold text-[#1A1A1A] tracking-tight">
+      <div className="font-serif text-3xl sm:text-5xl font-bold text-[#38291B] tracking-tight">
         {count}
         {suffix}
       </div>
-      <div className="text-[0.68rem] uppercase tracking-[0.14em] font-semibold text-[#666055]">
+      <div className="text-[0.68rem] uppercase tracking-[0.14em] font-semibold text-[#8A7D6E]">
         {label}
       </div>
     </div>
@@ -61,23 +61,37 @@ const StatCounter: React.FC<StatItemProps> = ({ value, suffix, label }) => {
 
 export const StatsSection: React.FC = () => {
   return (
-    <section className="bg-[#F5F2EB] border-b border-[#E6E1D5] py-14 px-6 sm:px-10">
-      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-around gap-8 sm:gap-12">
+    <section className="bg-[#F6F3EC] pt-12 pb-20 px-5 sm:px-8 border-t border-[#E6E0D2] relative">
+      {/* 4 Stats Grid */}
+      <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 divide-x-0 lg:divide-x divide-[#E6E0D2] relative z-10">
         <StatCounter value={30} suffix="+" label="Years in Practice" />
         <StatCounter value={500} suffix="+" label="Legal Matters Resolved" />
-
-        {/* Center Circular Emblem with Down Arrow */}
-        <div className="flex flex-col items-center justify-center">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-dotted border-[#8C8577] flex flex-col items-center justify-center text-center p-2 bg-[#F5F2EB] shadow-2xs group cursor-pointer hover:border-[#1A1A1A] transition-colors">
-            <ArrowDown className="w-4 h-4 text-[#1A1A1A] mb-0.5 animate-bounce" />
-            <span className="font-serif text-[0.55rem] uppercase font-bold text-[#2D2A26] leading-tight tracking-wider">
-              TOP RATED<br />FIRM
-            </span>
-          </div>
-        </div>
-
         <StatCounter value={98} suffix="%" label="Client Approval" />
-        <StatCounter value={1200} suffix="+" label="Clients Worldwide" />
+        <StatCounter value={6} suffix="K+" label="Clients Worldwide" />
+      </div>
+
+      {/* Center Curved Notch with Circular Scroll Down Badge Emblem */}
+      <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 z-30">
+        <a
+          href="#about"
+          className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#38291B] text-white border-4 border-[#F6F3EC] shadow-2xl flex flex-col items-center justify-center transition-transform hover:scale-105 group cursor-pointer"
+        >
+          <ArrowDown className="w-5 h-5 text-[#D4AF37] group-hover:translate-y-1 transition-transform" />
+          <span className="text-[0.52rem] uppercase font-bold tracking-widest text-gray-200 mt-0.5">
+            Scroll Down
+          </span>
+        </a>
+      </div>
+
+      {/* Curved Cutout Arch SVG at Bottom */}
+      <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none z-20">
+        <svg
+          className="w-full h-10 text-[#38291B] fill-current"
+          viewBox="0 0 1440 48"
+          preserveAspectRatio="none"
+        >
+          <path d="M0,0 C600,60 840,60 1440,0 L1440,48 L0,48 Z" />
+        </svg>
       </div>
     </section>
   );
