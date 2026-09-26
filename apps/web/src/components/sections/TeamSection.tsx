@@ -1,30 +1,93 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { TeamDetailModal } from '@ogbemudje/ui';
 import type { TeamMemberData } from '@ogbemudje/ui';
 import { TEAM_MEMBERS } from '../../constants/data';
-import { ArrowRight, UserCheck } from 'lucide-react';
+import { ArrowRight, UserCheck, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const TeamSection: React.FC = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMemberData | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - scrollRef.current.offsetLeft);
+    setScrollLeft(scrollRef.current.scrollLeft);
+  };
+
+  const handleMouseLeaveOrUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !scrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const scrollAmount = clientWidth * 0.75;
+      scrollRef.current.scrollTo({
+        left: direction === 'left' ? scrollLeft - scrollAmount : scrollLeft + scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   return (
-    <section id="our-attorneys" className="py-24 px-6 sm:px-10 bg-[#EBE6DC] border-b border-[#E6E1D5]">
+    <section id="our-attorneys" className="py-24 px-6 sm:px-10 bg-[#EBE6DC] border-b border-[#E6E1D5] overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-12">
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <div className="text-xs uppercase font-bold tracking-[0.2em] text-[#B8860B]">
-            Our Attorneys
+        {/* Section Header with Horizontal Scroll Controls */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="space-y-3">
+            <div className="text-xs uppercase font-bold tracking-[0.2em] text-[#B8860B]">
+              Our Attorneys
+            </div>
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#1A1A1A] leading-tight">
+              Distinguished Legal Counsel
+            </h2>
+            <p className="text-base text-[#59544B] font-normal">
+              Drag or scroll horizontally to explore our managing partners and associate legal directory.
+            </p>
           </div>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#1A1A1A] leading-tight">
-            Distinguished Legal Counsel
-          </h2>
-          <p className="text-base text-[#59544B] font-normal leading-relaxed">
-            Our legal practitioners bring decades of courtroom trial experience, regulatory knowledge, and commercial advisory mastery.
-          </p>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => scroll('left')}
+              className="w-11 h-11 rounded-full border border-[#E6E1D5] hover:border-[#1A1A1A] bg-[#FCFBFA] hover:bg-[#1A1A1A] text-[#1A1A1A] hover:text-white flex items-center justify-center transition-colors cursor-pointer shadow-xs"
+              aria-label="Previous attorney"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              className="w-11 h-11 rounded-full border border-[#E6E1D5] hover:border-[#1A1A1A] bg-[#FCFBFA] hover:bg-[#1A1A1A] text-[#1A1A1A] hover:text-white flex items-center justify-center transition-colors cursor-pointer shadow-xs"
+              aria-label="Next attorney"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
-        {/* Team Cards Directory */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+        {/* Horizontal Scrollable Team Directory Slider */}
+        <div
+          ref={scrollRef}
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeaveOrUp}
+          onMouseUp={handleMouseLeaveOrUp}
+          onMouseMove={handleMouseMove}
+          className={`flex gap-6 overflow-x-auto no-scrollbar scroll-smooth py-4 cursor-grab ${
+            isDragging ? 'cursor-grabbing select-none' : ''
+          }`}
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           {TEAM_MEMBERS.map((member, idx) => (
             <div
               key={idx}
@@ -37,7 +100,7 @@ export const TeamSection: React.FC = () => {
                   image: member.image,
                 })
               }
-              className="bg-[#FCFBFA] border border-[#E6E1D5] rounded-xs overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-[#1A1A1A] flex flex-col h-full w-[290px] sm:w-[320px] cursor-pointer group"
+              className="w-[290px] sm:w-[320px] shrink-0 bg-[#FCFBFA] border border-[#E6E1D5] rounded-xs overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-[#1A1A1A] flex flex-col cursor-pointer group"
             >
               <div className="h-[240px] bg-[#E6E1D5] relative overflow-hidden shrink-0 flex items-center justify-center font-serif text-5xl font-light text-[#59544B]">
                 {member.image ? (

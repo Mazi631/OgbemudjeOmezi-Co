@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'outline' | 'ghost';
+  variant?: 'primary' | 'outline' | 'ghost' | 'dark';
   children: React.ReactNode;
   asAnchor?: boolean;
   href?: string;
@@ -19,14 +19,16 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseStyles =
-    'inline-flex items-center justify-center gap-2 px-7 py-3.5 text-[0.8rem] font-semibold tracking-[0.12em] uppercase rounded-xs transition-all duration-300 text-center cursor-pointer relative overflow-hidden select-none group';
+    'inline-flex items-center justify-center gap-2 px-7 py-3.5 text-xs font-bold tracking-wider uppercase rounded-xs transition-all duration-300 text-center cursor-pointer relative overflow-hidden select-none group shadow-md opacity-100';
 
   const variantStyles =
     variant === 'primary'
-      ? 'bg-[var(--color-gold)] text-[var(--color-ink)] hover:bg-[var(--color-gold-bright)] hover:shadow-[0_8px_25px_rgba(184,136,42,0.35)] hover:-translate-y-0.5 font-bold'
+      ? 'bg-[#1A1A1A] text-white hover:bg-[#B8860B] font-bold border border-[#1A1A1A]'
+      : variant === 'dark'
+      ? 'bg-[#1A1A1A] text-white hover:bg-[#B8860B] font-bold border border-[#1A1A1A]'
       : variant === 'outline'
-      ? 'border border-[var(--color-gold)]/40 text-white/90 hover:border-[var(--color-gold)] hover:text-[var(--color-gold-bright)] hover:bg-[var(--color-gold)]/10 backdrop-blur-xs'
-      : 'text-[var(--color-gold)] hover:bg-[var(--color-gold)]/10';
+      ? 'bg-[#EBE6DC] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white border border-[#E6E1D5] font-bold'
+      : 'bg-[#B8860B] text-[#1A1A1A] hover:bg-[#D4AF37] font-bold';
 
   const combinedStyles = `${baseStyles} ${variantStyles} ${className}`;
 
@@ -36,9 +38,6 @@ export const Button: React.FC<ButtonProps> = ({
         {children}
         {icon && <span className="transition-transform duration-300 group-hover:translate-x-1">{icon}</span>}
       </span>
-      {variant === 'primary' && (
-        <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-      )}
     </>
   );
 

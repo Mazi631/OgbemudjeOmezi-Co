@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
 
 const NAV_LINKS = [
   { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
+  { label: 'About Us', href: '#about' },
   { label: 'Practice Areas', href: '#practice-areas' },
   { label: 'Our Attorneys', href: '#our-attorneys' },
   { label: 'Testimonials', href: '#testimonials' },
+  { label: 'Contact', href: '#contact' },
 ];
 
 export const Navbar: React.FC = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -21,77 +22,139 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (sidebarOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [sidebarOpen]);
+
+  const closeSidebar = () => setSidebarOpen(false);
+
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-[#F5F2EB]/95 backdrop-blur-md py-4 border-b border-[#E6E1D5] shadow-xs'
-          : 'bg-[#F5F2EB] py-6'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between">
-        {/* Brand Logo */}
-        <a href="#home" className="font-serif text-2xl font-bold tracking-tight text-[#1A1A1A] flex items-center">
-          Ogbemudje, Omezi <span className="italic font-normal text-[#B8860B] ml-1.5">&amp; Co.</span>
-        </a>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-sm font-medium text-[#2D2A26] hover:text-[#B8860B] transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        {/* Right CTA Button */}
-        <div className="hidden md:flex items-center">
-          <a
-            href="#contact"
-            className="bg-[#1A1A1A] text-white hover:bg-[#B8860B] text-xs font-semibold px-5 py-2.5 rounded-sm transition-all duration-300 flex items-center gap-2 tracking-wide group"
-          >
-            <span>Contact Us</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+          scrolled
+            ? 'bg-[#F5F2EB]/95 backdrop-blur-md py-4 border-b border-[#E6E1D5] shadow-xs'
+            : 'bg-[#F5F2EB] py-6'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between">
+          {/* Brand Logo */}
+          <a href="#home" className="font-serif text-2xl font-bold tracking-tight text-[#1A1A1A] flex items-center">
+            Ogbemudje, Omezi <span className="italic font-normal text-[#B8860B] ml-1.5">&amp; Co.</span>
           </a>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            {NAV_LINKS.slice(0, 5).map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-sm font-medium text-[#2D2A26] hover:text-[#B8860B] transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* Right Opaque CTA Button */}
+          <div className="hidden md:flex items-center">
+            <a
+              href="#contact"
+              className="bg-[#1A1A1A] text-white hover:bg-[#B8860B] text-xs font-bold px-6 py-3 rounded-sm transition-all duration-300 flex items-center gap-2 tracking-wide shadow-md group"
+            >
+              <span>Contact Us</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </a>
+          </div>
+
+          {/* Mobile Hamburger Menu Button -> Opens Sidebar */}
+          <button
+            type="button"
+            onClick={() => setSidebarOpen(true)}
+            className="md:hidden text-[#1A1A1A] hover:text-[#B8860B] p-2 focus:outline-none cursor-pointer"
+            aria-label="Open Sidebar Menu"
+          >
+            <Menu className="w-7 h-7" />
+          </button>
         </div>
+      </header>
 
-        {/* Mobile Hamburger Menu Button */}
-        <button
-          type="button"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden text-[#1A1A1A] p-2 focus:outline-none"
-          aria-label="Toggle Navigation Menu"
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
-      </div>
+      {/* Slide-Out Sidebar Drawer */}
+      {sidebarOpen && (
+        <div className="fixed inset-0 z-50 flex justify-end animate-fadeIn">
+          {/* Dark Backdrop Overlay */}
+          <div
+            className="fixed inset-0 bg-black/70 backdrop-blur-xs cursor-pointer"
+            onClick={closeSidebar}
+            aria-hidden="true"
+          />
 
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-[#F5F2EB] border-b border-[#E6E1D5] px-6 py-6 space-y-4 shadow-lg animate-fadeIn">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-base font-medium text-[#1A1A1A] hover:text-[#B8860B]"
-            >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href="#contact"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block w-full bg-[#1A1A1A] text-white text-center text-sm font-semibold py-3 rounded-sm mt-4"
-          >
-            Contact Us &rarr;
-          </a>
+          {/* Right Slide-Out Sidebar Panel */}
+          <aside className="relative z-10 w-[300px] sm:w-[360px] h-full bg-[#1A1A1A] text-white p-8 border-l border-[#B8860B]/40 shadow-2xl flex flex-col justify-between overflow-y-auto">
+            <div className="space-y-8">
+              {/* Sidebar Header */}
+              <div className="flex items-center justify-between border-b border-white/10 pb-5">
+                <div className="font-serif text-lg font-bold text-white">
+                  Ogbemudje, Omezi <span className="text-[#D4AF37] italic font-light">&amp; Co.</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={closeSidebar}
+                  className="bg-white/10 hover:bg-[#B8860B] text-white p-2 rounded-full transition-colors cursor-pointer"
+                  aria-label="Close Sidebar"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Navigation Links List */}
+              <nav className="space-y-4">
+                {NAV_LINKS.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={closeSidebar}
+                    className="block text-lg font-serif font-medium text-gray-200 hover:text-[#D4AF37] transition-colors py-1.5 border-b border-white/5"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+            </div>
+
+            {/* Sidebar Footer & Chambers Info */}
+            <div className="pt-8 border-t border-white/10 space-y-6">
+              <a
+                href="#contact"
+                onClick={closeSidebar}
+                className="w-full bg-[#B8860B] hover:bg-[#D4AF37] text-[#1A1A1A] text-xs font-bold uppercase tracking-wider py-3.5 rounded-sm transition-all text-center inline-flex items-center justify-center gap-2 shadow-md"
+              >
+                <span>Schedule Consultation</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+
+              <div className="space-y-3 text-xs text-gray-400 font-normal">
+                <div className="flex items-center gap-2">
+                  <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
+                  <span>+234 802 303 2981</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Mail className="w-3.5 h-3.5 text-[#D4AF37]" />
+                  <span>info@ogbemudjeomezi.com</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <MapPin className="w-3.5 h-3.5 text-[#D4AF37] shrink-0 mt-0.5" />
+                  <span>Victoria Island, Lagos, Nigeria</span>
+                </div>
+              </div>
+            </div>
+          </aside>
         </div>
       )}
-    </header>
+    </>
   );
 };

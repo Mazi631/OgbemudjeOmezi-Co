@@ -2,7 +2,52 @@ import React, { useState } from 'react';
 import { PracticeDetailModal } from '@ogbemudje/ui';
 import type { PracticeArea } from '../../constants/data';
 import { PRACTICE_AREAS } from '../../constants/data';
-import { ArrowRight } from 'lucide-react';
+import {
+  Building2,
+  Scale,
+  Home,
+  Briefcase,
+  FileText,
+  Gavel,
+  Anchor,
+  Plane,
+  Lock,
+  Globe,
+  Handshake,
+  ArrowRight,
+} from 'lucide-react';
+
+const getPracticeIcon = (id: string) => {
+  switch (id) {
+    case 'corporate-commercial':
+    case 'mergers-acquisitions':
+      return <Building2 className="w-6 h-6 text-[#B8860B]" />;
+    case 'commercial-litigation':
+    case 'commercial-arbitration':
+      return <Scale className="w-6 h-6 text-[#B8860B]" />;
+    case 'real-estate-practice':
+    case 'legal-perfection-titles':
+      return <Home className="w-6 h-6 text-[#B8860B]" />;
+    case 'banking-finance':
+    case 'receivership-practice':
+      return <Briefcase className="w-6 h-6 text-[#B8860B]" />;
+    case 'energy-natural-resources':
+    case 'contract-negotiation':
+      return <FileText className="w-6 h-6 text-[#B8860B]" />;
+    case 'maritime-law':
+      return <Anchor className="w-6 h-6 text-[#B8860B]" />;
+    case 'aviation-law':
+      return <Plane className="w-6 h-6 text-[#B8860B]" />;
+    case 'intellectual-property':
+      return <Lock className="w-6 h-6 text-[#B8860B]" />;
+    case 'investment-law':
+      return <Globe className="w-6 h-6 text-[#B8860B]" />;
+    case 'joint-ventures-partnerships':
+      return <Handshake className="w-6 h-6 text-[#B8860B]" />;
+    default:
+      return <Gavel className="w-6 h-6 text-[#B8860B]" />;
+  }
+};
 
 export const PracticeAreasSection: React.FC = () => {
   const [selectedPractice, setSelectedPractice] = useState<PracticeArea | null>(null);
@@ -32,8 +77,9 @@ export const PracticeAreasSection: React.FC = () => {
               className="bg-[#FCFBFA] border border-[#E6E1D5] p-8 rounded-xs hover:border-[#1A1A1A] transition-all duration-300 hover:shadow-lg cursor-pointer flex flex-col justify-between group h-full space-y-6"
             >
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-sm bg-[#EBE6DC] flex items-center justify-center text-2xl">
-                  {area.icon || '⚖️'}
+                {/* SVG Icon Container */}
+                <div className="w-12 h-12 rounded-sm bg-[#EBE6DC] flex items-center justify-center border border-[#E6E1D5] group-hover:bg-[#1A1A1A] transition-colors">
+                  {getPracticeIcon(area.id)}
                 </div>
                 <h3 className="font-serif text-2xl font-bold text-[#1A1A1A] group-hover:text-[#B8860B] transition-colors">
                   {area.title}
