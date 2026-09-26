@@ -8,10 +8,17 @@ export const Footer: React.FC = () => {
       <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#B8860B] to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-10 pt-16 pb-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-        {/* Brand Column */}
+        {/* Brand Column with Official Law Firm Logo */}
         <div className="space-y-4">
-          <div className="font-serif text-2xl font-bold text-white">
-            Ogbemudje, Omezi <span className="text-[#B8860B] italic font-normal ml-1">&amp; Co.</span>
+          <div className="flex items-center gap-3">
+            <img
+              src={CONTACT_INFO.logoUrl}
+              alt="Ogbemudje, Omezi & Co. Logo"
+              className="h-12 w-auto object-contain brightness-110 filter drop-shadow-md"
+            />
+            <div className="font-serif text-xl font-bold text-white leading-tight">
+              Ogbemudje, Omezi <span className="text-[#B8860B] italic font-normal block text-sm">&amp; Co.</span>
+            </div>
           </div>
           <p className="text-xs leading-relaxed max-w-xs text-gray-400 font-normal">
             A commercial legal firm providing counsel, litigation advocacy, dispute resolution, and regulatory guidance from Victoria Island, Lagos, Nigeria. Established 1994.

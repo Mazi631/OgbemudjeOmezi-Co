@@ -13,6 +13,7 @@ const NAV_LINKS = [
 export const Navbar: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isRevealed, setIsRevealed] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +21,27 @@ export const Navbar: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    let timer: number | null = null;
+    const triggerEntrance = () => {
+      timer = window.setTimeout(() => {
+        setIsRevealed(true);
+      }, 50);
+    };
+
+    if (typeof window !== 'undefined' && (window as any).__WEBSITE_LOADED__) {
+      triggerEntrance();
+    } else {
+      window.addEventListener('website-loaded', triggerEntrance);
+      timer = window.setTimeout(triggerEntrance, 6000);
+    }
+
+    return () => {
+      window.removeEventListener('website-loaded', triggerEntrance);
+      if (timer) clearTimeout(timer);
+    };
   }, []);
 
   useEffect(() => {
@@ -35,7 +57,9 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] transform ${
+          isRevealed ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+        } ${
           scrolled
             ? 'bg-[#F6F3EC]/95 backdrop-blur-md py-4 border-b border-[#E6E0D2] shadow-xs'
             : 'bg-[#F6F3EC] py-6'
@@ -93,8 +117,8 @@ export const Navbar: React.FC = () => {
             aria-hidden="true"
           />
 
-          {/* Right Slide-Out Sidebar Panel */}
-          <aside className="relative z-10 w-[300px] sm:w-[360px] h-full bg-[#38291B] text-white p-8 border-l border-[#8A7D6E]/40 shadow-2xl flex flex-col justify-between overflow-y-auto">
+          {/* Right Slide-Out Sidebar Panel with Snappy Animation */}
+          <aside className="relative z-10 w-[300px] sm:w-[360px] h-full bg-[#38291B] text-white p-8 border-l border-[#8A7D6E]/40 shadow-2xl flex flex-col justify-between overflow-y-auto animate-slide-in-right">
             <div className="space-y-8">
               {/* Sidebar Header */}
               <div className="flex items-center justify-between border-b border-white/10 pb-5">
