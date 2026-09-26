@@ -34,7 +34,7 @@ export const HomePage: React.FC = () => {
       </div>
 
       {/* LAYER 2: Regular Page Section */}
-      <div className="relative z-20 bg-[#1A1815]">
+      <div className="relative z-20 bg-[#F6F3EC]">
         {/* About Our Firm */}
         <ScrollReveal>
           <AboutFirmSection />
