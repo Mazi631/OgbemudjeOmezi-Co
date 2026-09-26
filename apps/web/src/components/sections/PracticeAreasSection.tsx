@@ -1,75 +1,41 @@
-import React, { useState, useRef } from 'react';
-import { PRACTICE_AREAS } from '../../constants/data';
-import type { PracticeArea } from '../../constants/data';
+import React, { useState } from 'react';
 import { SectionLabel, PracticeCard, PracticeDetailModal } from '@ogbemudje/ui';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import type { PracticeArea } from '../../constants/data';
+import { PRACTICE_AREAS } from '../../constants/data';
 
 export const PracticeAreasSection: React.FC = () => {
-  const [selectedArea, setSelectedArea] = useState<PracticeArea | null>(null);
-  const sliderRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (sliderRef.current) {
-      const scrollAmount = direction === 'left' ? -360 : 360;
-      sliderRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
+  const [selectedPractice, setSelectedPractice] = useState<PracticeArea | null>(null);
 
   return (
-    <section id="practice" className="py-24 px-5 sm:px-8 bg-[var(--color-ink)] text-white overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
-          <div>
-            <SectionLabel light>What We Do</SectionLabel>
-            <h2 className="font-serif text-3xl sm:text-5xl font-normal text-white leading-tight">
-              Our Practice <em className="italic text-[var(--color-gold)]">Areas</em>
-            </h2>
-            <p className="text-[0.95rem] text-white/55 max-w-2xl leading-relaxed mt-2">
-              Comprehensive legal expertise spanning seven core disciplines. Click any area to explore details.
-            </p>
-          </div>
-
-          {/* Navigation Controls */}
-          <div className="flex items-center gap-3 shrink-0">
-            <button
-              type="button"
-              onClick={() => scroll('left')}
-              className="p-3 rounded-full border border-white/20 text-white/80 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] hover:bg-white/5 transition-all cursor-pointer"
-              aria-label="Scroll left"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              type="button"
-              onClick={() => scroll('right')}
-              className="p-3 rounded-full border border-white/20 text-white/80 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] hover:bg-white/5 transition-all cursor-pointer"
-              aria-label="Scroll right"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
+    <section id="practice-areas" className="py-24 px-5 sm:px-8 bg-[var(--color-obsidian)] text-white relative">
+      <div className="max-w-7xl mx-auto space-y-12">
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto space-y-3">
+          <SectionLabel light>Practice Areas</SectionLabel>
+          <h2 className="font-serif text-3xl sm:text-5xl font-normal text-white leading-tight">
+            Comprehensive Legal Solutions
+          </h2>
+          <p className="text-sm text-gray-300 font-light leading-relaxed">
+            Our firm delivers specialized counsel across key commercial, regulatory, and dispute resolution disciplines in Nigeria.
+          </p>
         </div>
 
-        {/* Horizontal Slider Row */}
-        <div
-          ref={sliderRef}
-          className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-6 pb-6 pt-2 scrollbar-thin scrollbar-thumb-[var(--color-gold)]/40 scrollbar-track-transparent select-none"
-          style={{ scrollbarWidth: 'thin' }}
-        >
-          {PRACTICE_AREAS.map((area) => (
+        {/* Practice Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {PRACTICE_AREAS.slice(0, 6).map((area) => (
             <PracticeCard
               key={area.id}
               area={area}
-              onClick={() => setSelectedArea(area)}
+              onClick={() => setSelectedPractice(area)}
             />
           ))}
         </div>
       </div>
 
-      {/* Enlarged Detail Modal */}
+      {/* Practice Detail Popup Modal */}
       <PracticeDetailModal
-        area={selectedArea}
-        onClose={() => setSelectedArea(null)}
+        area={selectedPractice}
+        onClose={() => setSelectedPractice(null)}
       />
     </section>
   );

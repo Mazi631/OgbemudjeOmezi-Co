@@ -464,3 +464,33 @@ export const CONTACT_INFO = {
   hours: 'Monday – Friday: 9:00 AM – 5:00 PM\nSaturday: By Appointment\nSunday & Public Holidays: Closed',
   logoUrl: 'https://res.cloudinary.com/dsgr0pynx/image/upload/v1781340948/WhatsApp_Image_2026-06-12_at_11.16.14-removebg-preview_apjn2u.png',
 };
+
+export interface Testimonial {
+  quote: string;
+  author: string;
+  role: string;
+}
+
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    quote: "Ogbemudje, Omezi & Co. navigated our corporate acquisition with extraordinary care. Their strategic counsel saved us millions and months of complex negotiation.",
+    author: "David Chen",
+    role: "CEO, Meridian Holdings",
+  },
+  {
+    quote: "Facing high-stakes commercial litigation, we needed a legal team that understood both Nigerian statutory law and commercial stakes. They delivered beyond expectation.",
+    author: "Sarah Whitmore",
+    role: "Managing Director, Whitmore Industries",
+  },
+  {
+    quote: "From the initial chambers consultation to final governor's consent perfection, every property transaction detail was handled with precision and absolute integrity.",
+    author: "Marcus T. Reid",
+    role: "Director, Reid Family Trust",
+  },
+  {
+    quote: "Responsive, thorough, and genuinely invested in our legal outcome. Their senior partner guidance made us feel supported every step of the way.",
+    author: "Gregory Park",
+    role: "CEO, Parkview Capital",
+  },
+];
+

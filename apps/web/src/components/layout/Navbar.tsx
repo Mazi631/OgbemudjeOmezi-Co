@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { NAV_ITEMS, CONTACT_INFO } from '../../constants/data';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
+
+const NAV_LINKS = [
+  { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
+  { label: 'Practice Areas', href: '#practice-areas' },
+  { label: 'Our Attorneys', href: '#our-attorneys' },
+  { label: 'Testimonials', href: '#testimonials' },
+  { label: 'Contact', href: '#contact', isCta: true },
+];
 
 export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,66 +28,47 @@ export const Navbar: React.FC = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
         scrolled
-          ? 'bg-[#0f1117]/95 backdrop-blur-md border-[var(--color-gold)]/25 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)]'
-          : 'bg-[#0f1117]/85 backdrop-blur-sm border-white/10 py-4.5'
+          ? 'bg-[#0A0E1A]/95 backdrop-blur-md border-[var(--color-gold)]/30 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.6)]'
+          : 'bg-[#0A0E1A]/85 backdrop-blur-sm border-white/10 py-4.5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between h-[54px]">
         {/* Logo Link */}
-        <Link
-          to="/"
+        <a
+          href="#home"
           onClick={closeMobileMenu}
-          className="font-serif text-[1.15rem] font-semibold tracking-wide text-white flex items-center gap-3 group"
+          className="font-serif text-[1.15rem] font-semibold tracking-wide text-white flex items-center gap-2 group"
         >
-          <img
-            src={CONTACT_INFO.logoUrl}
-            alt="Ogbemudje, Omezi & Co. Logo"
-            className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105 filter drop-shadow-[0_2px_8px_rgba(184,136,42,0.3)]"
-          />
           <span className="flex flex-col sm:flex-row sm:gap-1.5 leading-tight">
             <span className="font-serif font-semibold text-white">Ogbemudje, Omezi</span>
             <span className="text-[var(--color-gold-bright)] italic font-light">&amp; Co.</span>
           </span>
-        </Link>
+        </a>
 
         {/* Desktop Navigation Links */}
         <div className="hidden lg:flex items-center gap-7">
-          {NAV_ITEMS.map((item) => {
+          {NAV_LINKS.map((item) => {
             if (item.isCta) {
               return (
-                <Link
-                  key={item.id}
-                  to={item.href}
+                <a
+                  key={item.label}
+                  href={item.href}
                   className="bg-[var(--color-gold)] text-[var(--color-ink)] font-bold px-5 py-2 rounded-xs text-[0.78rem] tracking-[0.1em] uppercase hover:bg-[var(--color-gold-bright)] transition-all duration-300 hover:shadow-[0_4px_15px_rgba(184,136,42,0.35)] flex items-center gap-1 group"
                 >
                   <span>{item.label}</span>
                   <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
+                </a>
               );
             }
 
             return (
-              <NavLink
-                key={item.id}
-                to={item.href}
-                end={item.href === '/'}
-                className={({ isActive }) =>
-                  `text-[0.78rem] font-medium tracking-[0.12em] uppercase transition-all duration-200 relative py-1.5 ${
-                    isActive
-                      ? 'text-[var(--color-gold-bright)] font-semibold'
-                      : 'text-white/75 hover:text-[var(--color-gold-bright)]'
-                  }`
-                }
+              <a
+                key={item.label}
+                href={item.href}
+                className="text-[0.78rem] font-medium tracking-[0.12em] uppercase text-white/80 hover:text-[var(--color-gold-bright)] transition-colors py-1.5"
               >
-                {({ isActive }) => (
-                  <>
-                    {item.label}
-                    {isActive && (
-                      <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-gold-bright)] rounded-full animate-fadeIn" />
-                    )}
-                  </>
-                )}
-              </NavLink>
+                {item.label}
+              </a>
             );
           })}
         </div>
@@ -98,25 +86,20 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#0f1117]/98 backdrop-blur-xl border-b border-[var(--color-gold)]/30 px-6 py-6 space-y-3 shadow-2xl animate-fadeIn">
-          {NAV_ITEMS.map((item) => (
-            <NavLink
-              key={item.id}
-              to={item.href}
-              end={item.href === '/'}
+        <div className="lg:hidden bg-[#0A0E1A]/98 backdrop-blur-xl border-b border-[var(--color-gold)]/30 px-6 py-6 space-y-3 shadow-2xl animate-fadeIn">
+          {NAV_LINKS.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
               onClick={closeMobileMenu}
-              className={({ isActive }) =>
-                `block text-[0.85rem] font-medium tracking-[0.14em] uppercase py-2.5 transition-all ${
-                  item.isCta
-                    ? 'bg-[var(--color-gold)] text-[var(--color-ink)] text-center py-3 rounded-xs font-bold mt-4 shadow-md'
-                    : isActive
-                    ? 'text-[var(--color-gold-bright)] font-bold pl-3 border-l-2 border-[var(--color-gold-bright)] bg-white/5'
-                    : 'text-white/80 hover:text-[var(--color-gold-bright)] pl-1'
-                }`
-              }
+              className={`block text-[0.85rem] font-medium tracking-[0.14em] uppercase py-2.5 transition-all ${
+                item.isCta
+                  ? 'bg-[var(--color-gold)] text-[var(--color-ink)] text-center py-3 rounded-xs font-bold mt-4 shadow-md'
+                  : 'text-white/80 hover:text-[var(--color-gold-bright)] pl-1'
+              }`}
             >
               {item.label}
-            </NavLink>
+            </a>
           ))}
         </div>
       )}
