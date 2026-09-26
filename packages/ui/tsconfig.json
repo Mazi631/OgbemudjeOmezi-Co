@@ -1,0 +1,10 @@
+{
+  "extends": "@ogbemudje/config/tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src"]
+}
