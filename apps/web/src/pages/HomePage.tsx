@@ -1,5 +1,6 @@
 import React from 'react';
 import { HeroSection } from '../components/sections/HeroSection';
+import { StatementSection } from '../components/sections/StatementSection';
 import { MarqueeSection } from '../components/sections/MarqueeSection';
 import { StatsSection } from '../components/sections/StatsSection';
 import { AboutFirmSection } from '../components/sections/AboutFirmSection';
@@ -12,28 +13,31 @@ import { ArrowRight } from 'lucide-react';
 export const HomePage: React.FC = () => {
   return (
     <div className="space-y-0 bg-[#F5F2EB]">
-      {/* 1. Hero Section (Cream background, centered title, arched Lady Justice image, LAWYER backdrop text, circular badges) */}
+      {/* 1. Hero Section (Screenshot 1: Centered title, Arched Lady Justice image, LAWYER backdrop text, circular badges) */}
       <HeroSection />
 
-      {/* 2. Infinite Marquee Awards & Credentials Ticker */}
+      {/* 2. Statement Banner Section (Screenshot 2: "At Ogbemudje, Omezi & Co., We Deliver Smart Legal Solutions... Focused Mindset...") */}
+      <StatementSection />
+
+      {/* 3. Marquee Ticker Bar (Screenshot 2: ‹ ★ SUPER LAWYERS 2024 › ‹ ★ BEST LAW FIRM 2023 › ‹ ★ TOP 100 ATTORNEYS › ‹ ★ AV PREEMINENT ›) */}
       <MarqueeSection />
 
-      {/* 3. Live Animated Stats Counter Bar */}
+      {/* 4. Live Stats Counter Row with Center Circular Emblem (Screenshot 2: 18+ | 100+ | Emblem ↓ | 95% | 6000+) */}
       <StatsSection />
 
-      {/* 4. About Our Firm Section */}
+      {/* 5. About Our Firm Section */}
       <AboutFirmSection />
 
-      {/* 5. Practice Areas Section with Popup Detail Modal */}
+      {/* 6. Practice Areas Section with Popup Detail Modal */}
       <PracticeAreasSection />
 
-      {/* 6. Our Attorneys Directory Section with Profile Detail Modal */}
+      {/* 7. Our Attorneys Directory Section with Profile Detail Modal */}
       <TeamSection />
 
-      {/* 7. Client Testimonials Draggable Carousel */}
+      {/* 8. Client Testimonials Draggable Carousel */}
       <TestimonialsSection />
 
-      {/* 8. Mid-page Chambers Call to Action Banner */}
+      {/* 9. Mid-page Chambers Call to Action Banner */}
       <section className="py-20 px-6 sm:px-10 bg-[#1A1A1A] text-white relative overflow-hidden">
         <div className="max-w-5xl mx-auto text-center space-y-6 relative z-10">
           <div className="text-xs uppercase font-bold tracking-[0.2em] text-[#D4AF37]">
@@ -57,7 +61,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 9. Interactive Contact & Consultation Form */}
+      {/* 10. Interactive Contact & Consultation Form */}
       <ContactSection />
     </div>
   );
