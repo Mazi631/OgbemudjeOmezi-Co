@@ -98,6 +98,10 @@ export const TeamSection: React.FC = () => {
                   role: member.role,
                   bio: member.bio,
                   image: member.image,
+                  speciality: member.speciality,
+                  education: member.education,
+                  bar: member.bar,
+                  cases: member.cases,
                 })
               }
               className="w-[290px] sm:w-[320px] shrink-0 bg-[#FCFBFA] border border-[#E6E1D5] rounded-xs overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-[#1A1A1A] flex flex-col cursor-pointer group"
@@ -114,7 +118,7 @@ export const TeamSection: React.FC = () => {
                 )}
 
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span className="bg-[#1A1A1A] text-white px-3.5 py-2 rounded-xs text-[0.72rem] font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md">
+                  <span className="bg-[#38291B] text-white px-3.5 py-2 rounded-xs text-[0.72rem] font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md">
                     <UserCheck className="w-4 h-4" /> View Profile
                   </span>
                 </div>
@@ -134,7 +138,7 @@ export const TeamSection: React.FC = () => {
                 </div>
 
                 <div className="pt-3 border-t border-[#E6E1D5] text-[0.72rem] font-bold uppercase tracking-wider text-[#1A1A1A] group-hover:text-[#B8860B] flex items-center justify-between transition-colors">
-                  <span>Read Full Bio</span>
+                  <span>View Full Profile</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                 </div>
               </div>

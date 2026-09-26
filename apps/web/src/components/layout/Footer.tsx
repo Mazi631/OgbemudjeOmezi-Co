@@ -130,8 +130,16 @@ export const Footer: React.FC = () => {
       <div className="border-t border-white/10 py-6 px-6 sm:px-10 bg-black">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-400">
           <p>&copy; {new Date().getFullYear()} Ogbemudje, Omezi &amp; Co. All Rights Reserved.</p>
-          <p className="text-xs text-[#D4AF37] font-serif italic">
-            Barristers, Solicitors &amp; Arbitrators &bull; Est. 1994
+          <p className="text-xs text-gray-300">
+            Built by{' '}
+            <a
+              href="https://theobsidianstudios.space"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-[#D4AF37] font-bold underline transition-colors cursor-pointer"
+            >
+              The Obsidian Studios
+            </a>
           </p>
         </div>
       </div>

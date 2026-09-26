@@ -280,6 +280,10 @@ export interface TeamMember {
   bio: string;
   image?: string;
   initials?: string;
+  speciality?: string;
+  education?: string;
+  bar?: string;
+  cases?: string[];
   category: 'partner' | 'associate' | 'admin';
 }
 
@@ -289,6 +293,14 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: 'Managing Partner',
     bio: 'Called to the Nigerian Bar in 1988, Sampson brings over 35 years of legal experience specializing in real estate practice and corporate law. Co-founder of Ogbemudje, Omezi & Co. in 1994, he is a former Vice Chairman of the Nigerian Bar Association (NBA) Ikeja Branch and a Member of the Chartered Institute of Arbitrators (CIArb).',
     image: 'https://res.cloudinary.com/dsgr0pynx/image/upload/v1781341094/WhatsApp_Image_2026-06-12_at_10.56.57_kcrpe8.jpg',
+    speciality: 'Real Estate & Corporate Law',
+    education: 'University of Lagos (LL.B, 1987); Nigerian Law School (B.L, 1988)',
+    bar: 'Supreme Court of Nigeria (1988); CIArb Fellow',
+    cases: [
+      'Multi-Billion Naira Commercial Real Estate Title Perfection in Lagos',
+      'Corporate Restructuring Counsel for Commercial Banking Institution',
+      'CIArb Commercial Arbitration Arbitral Panel Representative',
+    ],
     category: 'partner',
   },
   {
@@ -296,6 +308,14 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: 'Managing Partner',
     bio: 'With nearly 40 years of legal practice since his call to the Bar, Okechukwu specializes in dispute resolution, corporate law, aviation, maritime, and energy law. Co-founder of the firm in 1994, he serves as an Independent Non-Executive Director of Eterna Plc and Chairman of High Flyers Estate Ltd. Member of the International Bar Association (IBA) and the Society for Corporate Governance Nigeria.',
     image: 'https://res.cloudinary.com/dsgr0pynx/image/upload/v1781441489/WhatsApp_Image_2026-06-13_at_19.43.55_fask7t.jpg',
+    speciality: 'Dispute Resolution & Energy Law',
+    education: 'University of Nigeria, Nsukka (LL.B); Nigerian Law School (B.L)',
+    bar: 'Supreme Court of Nigeria; IBA Member; Corporate Governance Institute',
+    cases: [
+      'Independent Non-Executive Board Advisory for Eterna Plc',
+      'High-Stakes Energy & Petroleum Regulatory Compliance Representation',
+      'Federal High Court Commercial Dispute Defense for Financial Consortium',
+    ],
     category: 'partner',
   },
   {
@@ -303,6 +323,14 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: 'Partner, Head of Chamber',
     bio: 'Called to the Nigerian Bar with over two decades of legal practice, Morenikeji holds a Master of Laws (LL.M) from Lagos State University. She specializes in corporate restructuring, property law, company secretarial functions, and the perfection of title documents.',
     image: 'https://res.cloudinary.com/dsgr0pynx/image/upload/q_auto/f_auto/v1781343147/WhatsApp_Image_2026-06-12_at_10.56.36_2_psyfsd.jpg',
+    speciality: 'Corporate Restructuring & Property Law',
+    education: 'Lagos State University (LL.M); Nigerian Law School (B.L)',
+    bar: 'Supreme Court of Nigeria; NBA Member',
+    cases: [
+      'Governor\'s Consent & Title Perfection for Commercial Property Portfolio',
+      'Company Secretarial Governance for Multinational Enterprises',
+      'CAC Corporate Restructuring & Statutory Filings Audit',
+    ],
     category: 'partner',
   },
   {
@@ -310,6 +338,13 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: 'Senior Associate',
     bio: 'Called to the Bar in 2015, Theophilus has over 10 years of experience advising corporate clients across aviation, energy, property, and corporate practice. He routinely handles corporate restructuring and dispute resolution matters.',
     image: 'https://res.cloudinary.com/dsgr0pynx/image/upload/v1781341142/WhatsApp_Image_2026-06-12_at_10.56.57_2_gflung.jpg',
+    speciality: 'Aviation & Commercial Dispute Resolution',
+    education: 'Benue State University (LL.B); Nigerian Law School (B.L, 2015)',
+    bar: 'Supreme Court of Nigeria (2015)',
+    cases: [
+      'Aviation Sector Licensing & Regulatory Compliance Advisory',
+      'Appellate Court Commercial Dispute Brief Drafting',
+    ],
     category: 'associate',
   },
   {
@@ -317,6 +352,13 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: 'Associate',
     bio: 'Called to the Nigerian Bar in 2022, Ebiere advises on real estate practice, aviation law, data protection, and corporate matters. She is a member of the NBA, the Chartered Institute of Human Resource Management (CIHRM), and the Chartered Risk Management Institute of Nigeria (CRMI).',
     initials: 'EO',
+    speciality: 'Data Protection & Real Estate Advisory',
+    education: 'University of Port Harcourt (LL.B); Nigerian Law School (B.L, 2022)',
+    bar: 'Supreme Court of Nigeria (2022); CIHRM; CRMI',
+    cases: [
+      'Nigeria Data Protection Act (NDPA) Compliance Audit',
+      'Real Estate Lease & Title Conveyance Agreements',
+    ],
     category: 'associate',
   },
   {
@@ -324,6 +366,13 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: 'Associate',
     bio: 'Called to the Bar in 2022, Rejoice focuses on corporate and commercial legal practice and dispute resolution. She holds memberships with the NBA, the Institute of Chartered Mediators and Conciliators (ICMC), and the Institute of Chartered Secretaries and Administrators of Nigeria (ICSN).',
     image: 'https://res.cloudinary.com/dsgr0pynx/image/upload/v1781341203/WhatsApp_Image_2026-06-12_at_10.56.57_1_vyshgv.jpg',
+    speciality: 'Corporate Practice & Dispute Resolution',
+    education: 'Ahmadu Bello University (LL.B); Nigerian Law School (B.L, 2022)',
+    bar: 'Supreme Court of Nigeria (2022); ICMC Member; ICSN Member',
+    cases: [
+      'Commercial Dispute Mediation & Settlement Frameworks',
+      'Corporate Statutory Register Maintenance & Regulatory Filings',
+    ],
     category: 'associate',
   },
   {
@@ -331,6 +380,13 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: 'Associate',
     bio: 'Called to the Bar in 2022, Blossom practices in corporate law, real estate, and energy law. He is involved in legal drafting, opinion preparation, and company secretarial services. Member of the NBA, ICMC, and CRMI.',
     image: 'https://res.cloudinary.com/dsgr0pynx/image/upload/v1781343116/WhatsApp_Image_2026-06-12_at_10.56.36_1_ltkqfa.jpg',
+    speciality: 'Energy Law & Corporate Advisory',
+    education: 'Imo State University (LL.B); Nigerian Law School (B.L, 2022)',
+    bar: 'Supreme Court of Nigeria (2022); ICMC; CRMI',
+    cases: [
+      'Energy Sector Operating Agreement Drafting',
+      'Corporate Legal Opinion & Regulatory Advice',
+    ],
     category: 'associate',
   },
   {
@@ -338,6 +394,13 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: 'Secretary',
     bio: 'A Business Administration graduate from the University of Lagos, Cynthia has managed administrative operations at the firm since 2009, supporting the legal team across corporate secretarial and office management duties.',
     image: 'https://res.cloudinary.com/dsgr0pynx/image/upload/v1781343051/WhatsApp_Image_2026-06-12_at_10.56.36_j2dzcs.jpg',
+    speciality: 'Chambers Secretarial & Administration',
+    education: 'University of Lagos (B.Sc. Business Administration)',
+    bar: 'Chambers Administration Lead (Since 2009)',
+    cases: [
+      'Chambers Administrative Operations & Document Registry',
+      'Client Communications & Schedule Management',
+    ],
     category: 'admin',
   },
 ];

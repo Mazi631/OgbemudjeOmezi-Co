@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, Mail, Phone, Calendar } from 'lucide-react';
+import { X, Mail, Phone, Calendar, GraduationCap, Award, Briefcase } from 'lucide-react';
 import type { TeamMemberData } from './cards/TeamCard';
 
 export interface TeamDetailModalProps {
@@ -25,7 +25,7 @@ export const TeamDetailModal: React.FC<TeamDetailModalProps> = ({ member, onClos
   if (!member) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/75 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-sm animate-fadeIn">
       {/* Backdrop overlay */}
       <div
         className="absolute inset-0 cursor-pointer"
@@ -34,21 +34,21 @@ export const TeamDetailModal: React.FC<TeamDetailModalProps> = ({ member, onClos
       />
 
       {/* Modal Dialog Content */}
-      <div className="relative bg-[#FCFBFA] border border-[#E6E1D5] rounded-sm max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl z-10 flex flex-col">
-        {/* Top Right Close Button */}
+      <div className="relative bg-[#FCFBFA] border border-[#E6E1D5] rounded-md max-w-3xl w-full max-h-[92vh] overflow-y-auto shadow-2xl z-10 flex flex-col p-6 sm:p-8 space-y-6">
+        {/* Prominent Top-Right Cancel / Close Icon Button */}
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 z-30 bg-[#1A1A1A] hover:bg-[#B8860B] text-white p-2 rounded-full transition-colors cursor-pointer shadow-md flex items-center gap-1.5 px-3 py-1.5 text-xs uppercase font-bold tracking-wider"
-          aria-label="Close modal"
+          className="absolute top-4 right-4 z-40 bg-[#38291B] hover:bg-[#B8860B] text-white p-2.5 rounded-full transition-colors cursor-pointer shadow-lg flex items-center justify-center"
+          aria-label="Close profile modal"
         >
-          <X className="w-4 h-4" />
-          <span>Cancel</span>
+          <X className="w-5 h-5" />
         </button>
 
-        <div className="grid grid-cols-1 md:grid-cols-12">
-          {/* Photo Column with On-Image Cancel / Close Button */}
-          <div className="md:col-span-5 bg-[#E6E1D5] min-h-[280px] md:min-h-full relative overflow-hidden flex items-center justify-center font-serif text-6xl text-[#59544B]">
+        {/* Header Profile Section with Compact Avatar */}
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 border-b border-[#E6E1D5] pb-6">
+          {/* Controlled Compact Image Size */}
+          <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden shrink-0 border-4 border-[#B8860B] shadow-md bg-[#E6E1D5] relative">
             {member.image ? (
               <img
                 src={member.image}
@@ -56,70 +56,104 @@ export const TeamDetailModal: React.FC<TeamDetailModalProps> = ({ member, onClos
                 className="w-full h-full object-cover object-top"
               />
             ) : (
-              <span>{member.initials || member.name.split(' ').map((n) => n[0]).join('')}</span>
+              <div className="w-full h-full flex items-center justify-center font-serif text-4xl text-[#38291B] font-bold">
+                {member.initials || member.name.split(' ').map((n) => n[0]).join('')}
+              </div>
             )}
+          </div>
 
-            {/* Cancel Badge Overlay directly on Image */}
+          <div className="space-y-2 text-center sm:text-left flex-grow">
+            <div className="text-xs font-bold tracking-[0.18em] uppercase text-[#B8860B]">
+              {member.role}
+            </div>
+            <h3 className="font-serif text-2xl sm:text-4xl font-bold text-[#38291B]">
+              {member.name}
+            </h3>
+            {member.speciality && (
+              <div className="inline-block bg-[#EBE6DC] text-[#38291B] text-xs font-semibold px-3 py-1 rounded-full border border-[#E6E1D5]">
+                Specialty: {member.speciality}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Credentials Grid: Education & Bar Admissions */}
+        {(member.education || member.bar) && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-[#F5F2EB] p-4 rounded-xs border border-[#E6E1D5]">
+            {member.education && (
+              <div className="flex items-start gap-3">
+                <GraduationCap className="w-5 h-5 text-[#B8860B] shrink-0 mt-0.5" />
+                <div>
+                  <h5 className="text-[0.7rem] uppercase font-bold tracking-wider text-[#8A7D6E]">Education</h5>
+                  <p className="text-xs text-[#38291B] font-medium mt-0.5">{member.education}</p>
+                </div>
+              </div>
+            )}
+            {member.bar && (
+              <div className="flex items-start gap-3">
+                <Award className="w-5 h-5 text-[#B8860B] shrink-0 mt-0.5" />
+                <div>
+                  <h5 className="text-[0.7rem] uppercase font-bold tracking-wider text-[#8A7D6E]">Bar Admissions</h5>
+                  <p className="text-xs text-[#38291B] font-medium mt-0.5">{member.bar}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Full Biography */}
+        <div className="space-y-2">
+          <h4 className="text-xs font-bold tracking-[0.16em] uppercase text-[#B8860B]">
+            Professional Biography
+          </h4>
+          <p className="text-sm text-[#2D2A26] leading-relaxed font-normal">
+            {member.bio}
+          </p>
+        </div>
+
+        {/* Representative Cases List */}
+        {member.cases && member.cases.length > 0 && (
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold tracking-[0.16em] uppercase text-[#B8860B] flex items-center gap-1.5">
+              <Briefcase className="w-4 h-4" /> Representative Matters &amp; Cases
+            </h4>
+            <ul className="space-y-2">
+              {member.cases.map((c, idx) => (
+                <li key={idx} className="text-xs text-[#38291B] bg-[#F5F2EB] p-3 rounded-xs border border-[#E6E1D5] flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#B8860B] shrink-0" />
+                  <span className="font-medium">{c}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Footer Contact & Consultation CTA */}
+        <div className="pt-4 border-t border-[#E6E1D5] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex flex-wrap gap-4 text-xs text-[#59544B]">
+            <span className="flex items-center gap-1.5 font-medium text-[#38291B]">
+              <Phone className="w-3.5 h-3.5 text-[#B8860B]" /> +234 802 303 2981
+            </span>
+            <span className="flex items-center gap-1.5 font-medium text-[#38291B]">
+              <Mail className="w-3.5 h-3.5 text-[#B8860B]" /> info@ogbemudjeomezi.com
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3 w-full sm:w-auto">
+            <a
+              href="#contact"
+              onClick={onClose}
+              className="flex-grow sm:flex-grow-0 px-6 py-3 bg-[#38291B] hover:bg-[#B8860B] text-white text-xs font-bold uppercase tracking-wider rounded-xs transition-colors text-center inline-flex items-center justify-center gap-2 shadow-sm"
+            >
+              <Calendar className="w-4 h-4" /> Schedule Consultation
+            </a>
             <button
               type="button"
               onClick={onClose}
-              className="absolute top-3 left-3 z-20 bg-black/70 hover:bg-[#1A1A1A] text-white text-[0.7rem] uppercase font-bold tracking-wider px-3 py-1.5 rounded-full backdrop-blur-md flex items-center gap-1.5 border border-white/20 transition-all cursor-pointer"
+              className="px-5 py-3 border border-[#E6E1D5] hover:bg-stone-200 text-[#38291B] text-xs font-bold uppercase tracking-wider rounded-xs transition-colors cursor-pointer"
             >
-              <X className="w-3.5 h-3.5" />
-              <span>Cancel</span>
+              Cancel
             </button>
-
-            <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-[#B8860B]" />
-          </div>
-
-          {/* Info Column */}
-          <div className="md:col-span-7 p-6 sm:p-8 flex flex-col justify-between space-y-6">
-            <div>
-              <div className="text-[0.73rem] font-bold tracking-[0.16em] uppercase text-[#B8860B] mb-1">
-                {member.role}
-              </div>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#1A1A1A] mb-4">
-                {member.name}
-              </h3>
-
-              <div className="w-12 h-[2px] bg-[#B8860B] mb-6" />
-
-              <h4 className="text-[0.72rem] font-bold tracking-[0.12em] uppercase text-[#59544B] mb-2">
-                Professional Biography &amp; Credentials
-              </h4>
-              <p className="text-sm text-[#2D2A26] leading-relaxed font-normal">
-                {member.bio}
-              </p>
-            </div>
-
-            {/* Chambers Contact & Action CTA */}
-            <div className="pt-6 border-t border-[#E6E1D5] space-y-4">
-              <div className="flex flex-wrap gap-4 text-xs text-[#59544B]">
-                <span className="flex items-center gap-1.5 font-medium text-[#1A1A1A]">
-                  <Phone className="w-3.5 h-3.5 text-[#B8860B]" /> +234 802 303 2981
-                </span>
-                <span className="flex items-center gap-1.5 font-medium text-[#1A1A1A]">
-                  <Mail className="w-3.5 h-3.5 text-[#B8860B]" /> info@ogbemudjeomezi.com
-                </span>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <a
-                  href="#contact"
-                  onClick={onClose}
-                  className="flex-grow py-3 bg-[#1A1A1A] hover:bg-[#B8860B] text-white text-xs font-bold uppercase tracking-wider rounded-xs transition-colors text-center inline-flex items-center justify-center gap-2 shadow-sm"
-                >
-                  <Calendar className="w-4 h-4" /> Schedule Consultation
-                </a>
-                <button
-                  type="button"
-                  onClick={onClose}
-                  className="px-5 py-3 border border-[#E6E1D5] hover:bg-stone-200 text-[#1A1A1A] text-xs font-bold uppercase tracking-wider rounded-xs transition-colors cursor-pointer"
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </div>
